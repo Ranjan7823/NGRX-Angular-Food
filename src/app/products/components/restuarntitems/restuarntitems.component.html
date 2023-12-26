@@ -1,0 +1,33 @@
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-4" *ngFor="let item of items" >
+            <div class="card card-food" (click)="getDetailItem(item)">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <img [src]="item.photoUrl" class="card-img-top food-item" alt="">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                           
+                            <h4  >{{item.menuItemName}}   <i class="fa fa-heart-o" aria-hidden="true"></i></h4> 
+                            <small>{{item.description | slice:0:40}}</small> 
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">
+                            <h4 class=""> {{item.restaurantName}}</h4>
+                        </div>
+                        <div class="col-5 text-right">
+                            <span><i class="fa fa-star-half-o" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="container mt-1">
+    <div class="row">
+        <div class="col-12">
+            <div class="card restaurant-card p-2">
+                <div class="row">
+                    <div class="col-6">
+                        <h4>{{restaurantInfo?.name}}</h4>
+                        <p>{{restaurantInfo?.address}}</p>
+                        <span>{{restaurantInfo?.cuisineType}}</span>
+                       
+                    </div>
+                    <div class="col-6 text-right">
+                        <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{restaurantInfo?.openingHours}}</p>
+                        <p>{{restaurantInfo?.contactNo}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-8">
+            <div class="row pt-3">
+                <div class="col-4" *ngFor="let item of foodItems"  >
+                    <div class="card card-food"  > 
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img [src]="item.photoUrl" class="card-img-top food-item" alt="Pav Bhaji"> 
+                                </div>
+                                <div class="col-8 text-right">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    <h6  >{{item.menuItemName}}</h6> 
+                                    <h6><i class="fa fa-star-half-o" aria-hidden="true"></i></h6> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <h5 class=""><i class="fa fa-inr" aria-hidden="true"></i> {{item.price}}</h5>
+                                </div>
+                                <div class="col-7 text-right">
+                                    <button class="btn btn-sm btn-danger" (click)="addToCart(item)"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-12 text-center" *ngIf="foodItems.length == 0">
+                    <h5>No Food Serving At Moment</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-6">
+                    <h6>Items Added</h6>
+                </div>
+                <div class="col-6 text-right">
+                   <span class="text-muted">Clear All</span> 
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cartItems"  >
+                <div class="col-3">
+                    <img [src]="item.photoUrl" class="card-img-top food-item-sm " alt="Pav Bhaji"> 
+                </div>
+                <div class="col-4">
+                    <small> {{item.menuItemName}}</small>
+                    <p> <i class="fa fa-inr" aria-hidden="true"></i> {{item.price}}</p> 
+                </div>
+                <div class="col-5 text-right"> 
+                   <button class="btn btn-sm btn-danger" (click)="decreaseQuantity(item)">-</button> {{item.quantity}}  <button class="btn btn-sm btn-danger" (click)="addToCart(item)">+</button>
+                </div>
+            </div> 
+            <div class="col-12 text-center" *ngIf="cartItems.length == 0">
+                <h5 class="mt-5">Food Cart Empty </h5>
+            </div>
+            <div class="row pt-1" *ngIf="cartItems.length !== 0">
+                <div class="col-12">
+                    <textarea  rows="3" class="form-control" [(ngModel)]="address" placeholder="Enter Address Where To Deliver"></textarea>
+                </div>
+            </div>
+            <div class="row" *ngIf="cartItems.length !== 0">
+                <div class="col-6">
+                    <h6>Total : {{totalAmount}}</h6>
+                </div>
+                <div class="col-6 text-right">
+                    <button class="btn btn-danger" (click)="placeOrder()">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
